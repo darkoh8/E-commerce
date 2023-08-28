@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KNUST Mall </title>
+  <link rel="stylesheet" href="styles.css">
+
+<style>
+/* Reset default margin and padding */
+body, h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+header {
+  background-color: #0055a4;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo img {
+  width: 150px;
+}
+
+
+/* Styles */
+input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Footer styles */
+footer {
+  background-color: #0055a4;
+  color: white;
+  text-align: center;
+  padding: 10px 0; /* Add more vertical padding for a better spacing */
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+.footer-logo {
+  margin-bottom: 15px; /* Add spacing between logo and text */
+}
+
+.footer-logo img {
+  width: 120px;
+  height: auto;
+}
+
+.footer-social-links {
+  margin-top: 20px; /* Add spacing between text and social links */
+}
+
+.footer-social-links a {
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 1.0rem;
+}
+
+.footer-social-links a:hover {
+  color: #f96302; /* Change color on hover */
+}
+
+
+</style>
+
+</head>
+<body>
+  <header>
+<nav>
+  <ul>
+    <ul>
+    <li><a href="index.htm">Home</a></li>
+    <li><a href="products.htm">Shop</a></li>
+    <li><a href="contact.htm">Contact</a></li> 
+  </ul>
+  </ul>
+</nav>
+
+    <div class="logo">
+      <img src="images/logo.jpg" width="auto" height="auto" alt="KNUST Mall">
+    </div>
+ 
+  </header>
+  
+  <section>
+  <div class="container">
+  <form action="action_page.php">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="australia">Ghana</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+	  <option value="usa">Australia</option>
+    </select>
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+
+  </section>
+  
+
+
+
+
+
+
+
+
+ 
+ <footer>
+  
+  <p>&copy; 2023 KNUST Mall. All rights reserved.</p>
+  <div class="footer-social-links">
+    <a href="https://www.facebook.com/your-facebook-page" target="_blank">
+      <img src="images/facebook.png" width="40" height="auto alt="Facebook">
+    </a>
+    <a href="https://www.instagram.com/your-instagram-page" target="_blank">
+      <img src="images/instagram.png" width="40" height="auto alt="Instagram">
+    </a>
+    <a href="mailto:your@email.com">
+      <img src="images/social.png" width="40" height="auto" alt="Email">
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>

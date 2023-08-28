@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KNUST Mall </title>
+  <link rel="stylesheet" href="styles.css">
+<style>
+/* Reset default margin and padding */
+body, h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+header {
+  background-color: #0055a4;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo img {
+  width: 150px;
+}
+
+.search-bar input {
+  padding: 8px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-bar button {
+  background-color: #f96302;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+/* Section styles */
+section {
+  padding: 40px;
+}
+
+
+
+.shop-all-button {
+  margin-top: 20px;
+  align-self: center; /* Center the button horizontally */
+  background-color: #f96302;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+/* Back to school */
+.promo-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 500px;
+}
+
+.promo-popup button {
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Electronics */
+.electronics {
+  background-color: #f5f5f5;
+  padding: 40px;
+}
+
+.electronics h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.electronics-wrapper {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 20px;
+}
+
+.electronics-card {
+  flex: 0 0 calc(25% - 20px);
+  margin: 0 10px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.electronics-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.electronics-card h3 {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.electronics-card p {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 5px;
+}
+
+.electronics-card .price {
+  font-weight: bold;
+  color: #f96302;
+  margin-top: 5px;
+}
+
+.electronics-card button {
+  background-color: #f96302;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+/* Your Cart */
+.cart-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item img {
+  max-width: 80px;
+  height: auto;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-details h3 {
+  margin: 0;
+}
+
+.cart-item-details p {
+  margin: 5px 0;
+  font-weight: bold;
+  color: #f96302;
+}
+
+.remove-from-cart {
+  background-color: #f96302;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.checkout-button {
+  background-color: #f96302;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Quick View */
+.quick-view-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.quick-view-content {
+  display: flex;
+  gap: 20px;
+}
+
+.quick-view-content img {
+  max-width: 200px;
+}
+
+.quick-view-details {
+  flex: 1;
+}
+
+.quick-view-button {
+  position: relative;
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #f96302;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quick-view-button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* Review */
+.reviews {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.avg-rating {
+  background: #007bff;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.review-count {
+ align-items: center;
+  margin-left: 10px;
+}
+
+
+/* Thank You */
+.thank-you-message {
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Footer styles */
+footer {
+  background-color: #0055a4;
+  color: white;
+  text-align: center;
+  padding: 20px 0; /* Add more vertical padding for a better spacing */
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+.footer-logo {
+  margin-bottom: 1.5px; /* Add spacing between logo and text */
+}
+
+.footer-logo img {
+  width: 0px;
+  height: auto;
+}
+
+.footer-social-links {
+  margin-top: 20px; /* Add spacing between text and social links */
+}
+
+.footer-social-links a {
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 1.0rem;
+}
+
+.footer-social-links a:hover {
+  color: #f96302; /* Change color on hover */
+}
+
+
+
+</style>
+
+
+</head>
+<body>
+  <header>
+    <nav>
+  <ul>
+    <li><a href="index.htm">Home</a></li>
+    <li><a href="products.htm">Shop</a></li>
+    <li><a href="contact.htm">Contact</a></li> 
+  </ul>
+</nav>
+	
+	
+    <div class="logo">
+      <img src="images/logo.jpg" width="auto" height="auto" alt="KNUST Mall">
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products...">
+      <button>Search</button>
+    </div>
+  </header>
+  
+  
+  <div class="promo-popup">
+  <div class="promo-content">
+    <h2>Back to School Sale!</h2> 
+    <p>Get 20% off select laptops - Limited time only!</p>
+    <button>Shop Now</button>
+  </div>
+</div>
+
+ 
+ 
+<section class="electronics">
+  <h2>Shop Electronics</h2>
+  <button class="shop-all-button">Shop All</button>
+
+
+  <div class="electronics-wrapper">
+    <div class="electronics-card">
+      <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6471/6471291_sd.jpg;maxHeight=250;maxWidth=200" alt="Electronics 1">
+      <h3>Headset</h3>
+      <p>Adjustable headband features comfortable padding. Noise-cancelling mic reduces distracting sounds while speaking.</p>
+      <span class="price">GH₵10.99</span>
+  <button class="add-to-cart">Add to Cart</button>
+  <div class="reviews">
+    <div class="avg-rating">4.5</div>
+    <div class="review-count">(12 reviews)</div>  
+  </div>
+    </div>
+    
+	<div class="electronics-card">
+      <img src="images/hp laptop.jpg" width="2000" height="3000"  alt="hp laptop">
+      <h3>HP Laptop</h3>
+	  <p> </p>
+	  <p>Enjoy exceptional entertainment with a flicker-free, micro-edge screen plus Audio by B&O </p>
+      <p>Windows 11 HomeIntel® Core™ i7-1355U (up to 5.0 GHz, 12 MB L3 cache, 10 cores, 12 threads) + Intel® Iris® Xe Graphics16 GB DDR4-3200 SDRAM (2 x 8 GB)256 GB PCIe® NVMe™ M.2 SSD</p>
+      <span class="price">GH₵299.99</span>
+      <button>Add to Cart</button>
+	  <div class="reviews">
+    <div class="avg-rating">4.6</div>
+    <div class="review-count">(15 reviews)</div>  
+  </div>
+    </div>
+ 
+ 
+<div class="electronics-card">
+      <img src="images/apple-ipad-pro-12-9-replacement-nyssa-spacegray-2022.png" alt="iPad Pro 12th Gen">
+      <h3>iPad Pro 12th Gen</h3>
+      <p>Astonishing performance. Incredibly advanced displays. Superfast wireless connectivity. Next-level Apple Pencil capabilities. Powerful new features in iPadOS 16. The ultimate iPad experience.</p>
+      <span class="price">GH₵299.99</span>
+      <button>Add to Cart</button>
+   <div class="reviews">
+    <div class="avg-rating">4.9</div>
+    <div class="review-count">(120 reviews)</div>  
+  </div>
+  </div>
+<div class="electronics-card">
+      <img src="images/iphone-14-plus-midnight-fall22-a.png" width="300" height="auto" alt="iPhone 14 Plus">
+      <h3>iPhone 14 Plus</h3>
+      <p>Apple's newest smartphone features a beautiful 6.1-inch Super Retina XDR OLED display. Powered by the lightning-fast A15 Bionic chip, the iPhone 14 delivers incredible performance whether you're working, playing, creating, or connecting.</p>
+      <span class="price">GH₵299.99</span>
+      <button>Add to Cart</button>
+<div class="reviews">
+    <div class="avg-rating">4.8</div>
+    <div class="review-count">(112 reviews)</div>  
+  </div>
+    </div>
+<div class="electronics-card">
+      <img src="images/macbook-air-gallery3-20201110.jpg" width="2000" height="auto" alt="Macbook Air2">
+      <h3>Macbook Air</h3>
+      <p>Our thinnest, lightest notebook, completely transformed by the Apple M1 chip. CPU speeds up to 3.5x faster. GPU speeds up to 5x faster. Our most advanced Neural Engine for up to 9x faster machine learning. The longest battery life ever in a MacBook Air. And a silent, fanless design. This much power has never been this ready to go.</p>
+      <span class="price">GH₵3999.99</span>
+      <button>Add to Cart</button>
+	  <div class="reviews">
+    <div class="avg-rating">4.9</div>
+    <div class="review-count">(18 reviews)</div>  
+  </div>
+</div>
+    </div>
+
+  <div class="scroll-arrow left-arrow">
+    <!-- Left arrow icon -->
+  </div>
+  <div class="scroll-arrow right-arrow">
+  
+  
+    <!-- Right arrow icon -->
+  </div>
+</section>
+
+ 
+
+ 
+<section>
+      <h2>Your Cart</h2>
+      <div class="cart-wrapper">
+        <!-- Cart items here -->
+      </div>
+      <div class="cart-total">
+        Total: <span>GH₵0.00</span>
+      </div>
+  <button class="checkout-button" id="checkout-button">Proceed to Checkout</button>
+  <div id="thank-you-message" class="thank-you-message"></div>
+    </section>
+
+
+
+  
+  <footer>
+  
+  <p>&copy; 2023 KNUST Mall. All rights reserved.</p>
+  <div class="footer-social-links">
+    <a href="https://www.facebook.com/your-facebook-page" target="_blank">
+      <img src="images/facebook.png" width="40" height="auto alt="Facebook">
+    </a>
+    <a href="https://www.instagram.com/your-instagram-page" target="_blank">
+      <img src="images/instagram.png" width="40" height="auto alt="Instagram">
+    </a>
+    <a href="mailto:your@email.com">
+      <img src="images/social.png" width="40" height="auto" alt="Email">
+    </a>
+  </div>
+</footer>
+
+
+  <script>
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+    const productWrapper = document.querySelector('.product-wrapper');
+
+    leftArrow.addEventListener('click', () => {
+      productWrapper.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    rightArrow.addEventListener('click', () => {
+      productWrapper.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const checkoutButton = document.getElementById('checkout-button');
+    const thankYouMessage = document.getElementById('thank-you-message');
+
+    checkoutButton.addEventListener('click', () => {
+      // Clear existing content (if any) and display the thank you message
+      thankYouMessage.innerHTML = '<p>Thank you for your order! We appreciate your business.</p>';
+    });
+  });
+</script>
+
+<script>
+// Get popup element
+const promoPopup = document.querySelector('.promo-popup');
+
+// Add click event listener 
+promoPopup.addEventListener('click', function() {
+
+  // Hide popup
+  promoPopup.style.display = 'none';
+
+});
+
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const quickViewButtons = document.querySelectorAll('.quick-view-button');
+  const quickViewModal = document.querySelector('.quick-view-modal');
+  const quickViewContent = quickViewModal.querySelector('.quick-view-content');
+
+  quickViewButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const productTitle = button.getAttribute('data-title');
+      const productPrice = parseFloat(button.getAttribute('data-price'));
+
+      const formattedPrice = productPrice.toFixed(2);
+
+      quickViewContent.innerHTML = `
+        <h3>${productTitle}</h3>
+        <p>Price: GH₵${formattedPrice}</p>
+        <button class="add-to-cart" data-title="${productTitle}" data-price="${formattedPrice}">Add to Cart</button>
+      `;
+
+      quickViewModal.classList.add('active');
+    });
+  });
+
+  quickViewModal.addEventListener('click', event => {
+    if (event.target === quickViewModal) {
+      quickViewModal.classList.remove('active');
+      quickViewContent.innerHTML = '';
+    }
+  });
+});
+
+
+</script>
+
+
+
+<script>
+const reviews = [
+  { productId: 1, rating: 5 },
+  { productId: 1, rating: 4 },
+  { productId: 2, rating: 3 }  
+];
+
+// Calculate average review for product 1
+const product1Reviews = reviews.filter(r => r.productId === 1);
+const product1Avg = product1Reviews.reduce((total, r) => total + r.rating, 0) / product1Reviews.length; 
+
+// Output: 4.5 average rating for product 1
+
+</script>
+
+
+</body>
+</html>
